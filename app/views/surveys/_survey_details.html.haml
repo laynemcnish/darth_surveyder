@@ -1,0 +1,17 @@
+.row
+  .col-md-5
+    = truncate(survey.question, length: 60, omission: '') do
+      %span{data: {toggle: "tooltip", placement: "bottom", container: "body"}, title: survey.question}...
+
+
+  .col-md-2
+    = survey.category.name
+  .col-md-3
+    .progress
+      .progress-bar.progress-bar-success{role: 'progressbar', style: "width: #{number_to_percentage(survey.positive_response_ratio, precision: 0)}", aria: {valuenow: survey.positive_response_ratio, valuemin: 0, valuemax: 100}}
+        = survey.positive_response_count.zero? ? "" : number_to_percentage(survey.positive_response_ratio, precision: 0) + " Yes"
+      .progress-bar.progress-bar-danger{role: 'progressbar', style: "width: #{number_to_percentage(survey.negative_response_ratio, precision: 0)}", aria: {valuenow: survey.negative_response_ratio, valuemin: 0, valuemax: 100}}
+        = survey.negative_response_count.zero? ? "" : number_to_percentage(survey.negative_response_ratio, precision: 0) + " No"
+  .col-md-2
+    %button.btn.btn-sm.response-button.btn-default{data: {toggle: "modal", target: "#newResponse#{survey.id}"}} Respond
+    = render "response_form", response: survey.responses.build, survey: survey

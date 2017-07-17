@@ -1,0 +1,16 @@
+.modal.fade.new-survey-modal{role: "dialog"}
+  .modal-dialog{role:"document"}
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss:"modal"}, aria: {label:"Close"}}
+          %span.glyphicon.glyphicon-remove{aria: {hidden: "true"}}
+        %h4.modal-title#newSurveyModalLabel Create new survey
+      .modal-body
+        = form_for(@survey, class: "form") do |f|
+          .form-group
+            = f.label "Question"
+            = f.text_field :question, required: true, class: "form-control"
+          .form-group
+            = f.label "Category"
+            = f.select :category, grouped_categories_for_user(@user), {multiple: true, include_blank: false}, class: "form-control select2"
+          = f.submit class: "btn btn-default"

@@ -10,6 +10,25 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require select2
+//= require bootstrap-sprockets
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(
+  function() {
+    $(".select2").select2(
+      {
+        width: '100%',
+        theme: "bootstrap",
+        placeholder: "select something",
+        tags: true
+      }
+    );
+
+    $('[data-toggle="tooltip"]').tooltip();
+  }
+);

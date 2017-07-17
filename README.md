@@ -1,24 +1,57 @@
-# README
+# Darth Surveyder
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Features
+This is a simple survey application stolen from the Empire by the Rebel forces to help manage their needs for consensus.
 
-Things you may want to cover:
+Within the application, you can:
 
-* Ruby version
+- Create new surveys
+- View your existing surveys
+- Search for existing surveys by partial word search in the question OR the survey categories
+- Categorize your surveys by using existing categories sorted by your most frequently used categories or creating a new one
+- Respond to existing surveys as many times as you desire
+- See the results of the existing surveys
+- Visit the `/about` page to see more information behind the Rebel forces’ motivations to retrieve this project. It is also accessible from the index page by clicking on the Darth Vader icon.
 
-* System dependencies
+### Setup Instructions
+If you do not have ruby installed on your machine, you can use the installation method of your choice or follow the instructions listed [here](https://www.ruby-lang.org/en/documentation/installation/).
 
-* Configuration
+To set up the application, please run:
 
-* Database creation
+`bin/setup`
 
-* Database initialization
+The setup script will:
 
-* How to run the test suite
+- Install gems
+- Check your ruby version matches the project's expectations
+- Check that you have Homebrew installed
+- Install Elasticsearch if you don't have it already and make sure it's running
+- Setup your database
+- Seed your database with test data
 
-* Services (job queues, cache servers, search engines, etc.)
+If you run into any errors with Elasticsearch not starting correctly, you may see the following error:
 
-* Deployment instructions
+`Failed to open TCP connection to localhost:9200`
 
-* ...
+Try running: `$ elasticsearch` in another tab and once it starts up, run the setup script again.  There are known ongoing issues with newer versions of Homebrew and how they manage their services so this is hopefully just a temporary patch around the problem until it is resolved.
+
+### Running the application
+To run the application in development:
+
+`$ foreman start`
+
+or you can run the following services separately:
+
+`$ rails server`
+
+`$ elasticsearch` If you don't have it running in the background already.
+
+### Tests
+
+For testing, this project uses RSpec and requires elasticsearch to be running.
+
+To run the tests:
+
+`$ elasticsearch` If you don't have it running in the background already.
+
+`$ rspec spec/`

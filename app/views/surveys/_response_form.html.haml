@@ -1,0 +1,19 @@
+.modal.fade.new-response-modal{role: "dialog", id: "newResponse#{survey.id}"}
+  .modal-dialog{role:"document"}
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss:"modal"}, aria: {label:"Close"}}
+          %span.glyphicon.glyphicon-remove{aria: {hidden: "true"}}
+        %h4.modal-title#newSurveyResponseModalLabel= survey.question
+      .modal-body
+        = form_tag(survey_save_survey_response_path(survey), method: :post, class: "form") do
+          .radio
+            %label
+              = radio_button_tag :answer, 1
+              Yes
+          .radio
+            %label
+              = radio_button_tag :answer, 0
+              No
+          = submit_tag "Submit", class: "btn btn-default"
+

@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title DarthSurveyder
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = favicon_link_tag 'favicon.ico'
+  %body
+    %nav.navbar.navbar-default
+      .container-fluid
+        %a.navbar-brand{href: navbar_brand_path}= image_tag "favicon-32x32.png"
+        .navbar-form
+          %a.btn.btn-default.pull-right{href: "/"} Clear
+          = form_tag(surveys_path, method: "get", class: "form form-inline pull-right") do
+            = text_field_tag(:q, "", placeholder: "Search", class: "form-control")
+            = submit_tag("Search", class: "btn btn-default")
+    .container
+      .col-md-10.col-md-offset-2
+      - if flash[:message].present?
+        .notice
+          = flash[:message]
+      = yield

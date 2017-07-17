@@ -1,5 +1,5 @@
 %w(
-  .ruby-version
+  .ruby-version-version
   .rbenv-vars
   tmp/restart.txt
   tmp/caching-dev.txt

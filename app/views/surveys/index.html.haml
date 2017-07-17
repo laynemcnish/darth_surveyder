@@ -1,0 +1,14 @@
+- if @surveys.any?
+  %h3 Surveys
+  - @surveys.each do |survey|
+    = render "survey_details", survey: survey
+
+  .pull-right
+    .col-md-12
+      = will_paginate @surveys
+- else
+  %h3
+    Been created yet, no surveys have.
+
+%button.btn.btn-default{data: {toggle: "modal", target: ".new-survey-modal"}} Create new survey
+= render "form"
